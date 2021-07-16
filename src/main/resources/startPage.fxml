@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="700.0" maxWidth="990.0" minHeight="700.0" minWidth="990.0" prefHeight="700.0" prefWidth="990.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.startPageController">
+   <children>
+      <AnchorPane layoutX="6.0" layoutY="4.0" prefHeight="691.0" prefWidth="980.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <TextField alignment="CENTER" editable="false" layoutX="400.0" prefHeight="27.0" prefWidth="181.0" style="-fx-background-color: #fafafa;" text="Мои задачи">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </TextField>
+            <Button fx:id="createButton" layoutX="616.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Создать">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="editButton" layoutX="794.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Изменить">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <TextField fx:id="textField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="504.0" prefHeight="113.0" prefWidth="953.0" promptText="Подробное описание задачи" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 9;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="deleteButton" layoutX="14.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Удалить">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <ScrollPane layoutX="14.0" layoutY="42.0" prefHeight="454.0" prefWidth="953.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="453.0" prefWidth="952.0">
+                     <children>
+                        <TableView fx:id="tasksTable" editable="true" prefHeight="453.0" prefWidth="952.0" style="-fx-alignment: CENTER_RIGHT;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
+                            <TableColumn fx:id="timeColumn" prefWidth="178.0" text="TIME" />
+                              <TableColumn fx:id="priorityColumn" prefWidth="115.0" text="PRIORITY" />
+                              <TableColumn fx:id="statusColumn" prefWidth="120.0" text="STATUS" />
+                              <TableColumn fx:id="titleColumn" prefWidth="455.0" text="TITLE" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
