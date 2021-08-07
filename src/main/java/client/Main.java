@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.http.Consts;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -14,6 +17,8 @@ public class Main extends Application {
     private static final int MAIN_WINDOW_WIDTH = 990;
     private static final int MAIN_WINDOW_HEIGHT = 700;
     public static Stage mainStage;
+    public static Integer currentTaskId;
+    public static ResponseHandler<String> myHandler = response -> EntityUtils.toString(response.getEntity(), Consts.UTF_8);
 
     public static void main(String[] args) {
         launch(args);

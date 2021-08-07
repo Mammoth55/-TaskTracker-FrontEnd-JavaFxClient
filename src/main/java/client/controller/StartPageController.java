@@ -1,31 +1,31 @@
 package client.controller;
 
 import client.Main;
-import client.dto.TaskDtoResponse;
 import client.model.TableviewTask;
 import client.model.Task;
+import client.model.TaskDtoResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
-import org.apache.http.Consts;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import static client.Main.myHandler;
 
 public class StartPageController implements Initializable {
 
@@ -65,19 +65,28 @@ public class StartPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tasksTable.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() > 0) {
-                textField.setText(tasksTable.getSelectionModel().getSelectedItem().getText());
+                TableviewTask currentTask = tasksTable.getSelectionModel().getSelectedItem();
+                textField.setText(currentTask.getText());
+                Main.currentTaskId = currentTask.getId();
             }
         });
 
-        createButton.setOnAction(event -> Main.openNewScene("/editTask.fxml"));
+        createButton.setOnAction(event -> {
+            Main.currentTaskId = null;
+            openNewScene("/editTask.fxml");
+        });
+
+        editButton.setOnAction(event -> {
+            openNewScene("/editTask.fxml");
+        });
 
         String result = null;
-        ResponseHandler<String> myHandler = response -> EntityUtils.toString(response.getEntity(), Consts.UTF_8);
         try {
             result = Request.Get("http://localhost:8080/api/tasks").execute().handleResponse(myHandler);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Gson g = new Gson();
         Type type = new TypeToken<TaskDtoResponse>(){}.getType();
         TaskDtoResponse taskDtoResponse = g.fromJson(result, type);
@@ -95,5 +104,17 @@ public class StartPageController implements Initializable {
                     task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
         }
         tasksTable.setItems(tableviewTasks);
+    }
+
+    public void openNewScene(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Main.mainStage.setScene(new Scene(loader.getRoot()));
+        Main.mainStage.show();
     }
 }
