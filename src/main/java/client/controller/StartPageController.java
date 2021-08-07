@@ -77,7 +77,20 @@ public class StartPageController implements Initializable {
         });
 
         editButton.setOnAction(event -> {
-            openNewScene("/editTask.fxml");
+            if (Main.currentTaskId != null) {
+                openNewScene("/editTask.fxml");
+            }
+        });
+
+        deleteButton.setOnAction(event -> {
+            if (Main.currentTaskId != null) {
+                try {
+                    Request.Delete("http://localhost:8080/api/tasks/" + Main.currentTaskId).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Main.openNewScene("/startPage.fxml");
+            }
         });
 
         String result = null;
@@ -104,6 +117,7 @@ public class StartPageController implements Initializable {
                     task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
         }
         tasksTable.setItems(tableviewTasks);
+        Main.currentTaskId = null;
     }
 
     public void openNewScene(String fxmlPath) {
