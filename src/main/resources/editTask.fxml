@@ -34,10 +34,18 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <ChoiceBox fx:id="statusChoiceBox" layoutX="224.0" layoutY="111.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
-            <TextField alignment="CENTER_RIGHT" editable="false" layoutX="14.0" layoutY="111.0" prefHeight="32.0" prefWidth="192.0" style="-fx-font-size: 14;" text="СТАТУС :" />
-            <TextField alignment="CENTER_RIGHT" editable="false" layoutX="505.0" layoutY="111.0" prefHeight="32.0" prefWidth="192.0" style="-fx-font-size: 14;" text="ПРИОРИТЕТ :" />
-            <ChoiceBox fx:id="priorityChoiceBox" layoutX="717.0" layoutY="111.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
+            <ChoiceBox fx:id="statusChoiceBox" layoutX="122.0" layoutY="112.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
+            <ChoiceBox fx:id="priorityChoiceBox" layoutX="686.0" layoutY="112.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
+            <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="108.0" prefHeight="39.0" prefWidth="98.0" text="СТАТУС :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="552.0" layoutY="108.0" prefHeight="39.0" prefWidth="124.0" text="ПРИОРИТЕТ :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

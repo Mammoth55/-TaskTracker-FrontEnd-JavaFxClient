@@ -23,6 +23,7 @@ import org.apache.http.client.fluent.Request;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import static client.Main.myHandler;
@@ -113,8 +114,8 @@ public class StartPageController implements Initializable {
 
         ObservableList<TableviewTask> tableviewTasks = FXCollections.observableArrayList();
         for (Task task : tasks) {
-            tableviewTasks.add(new TableviewTask(task.getId(), task.getTime().toString(), task.getPriority(),
-                    task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
+            tableviewTasks.add(new TableviewTask(task.getId(), new SimpleDateFormat("dd.MM.yyyy").format(task.getTime()),
+                    task.getPriority(), task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
         }
         tasksTable.setItems(tableviewTasks);
         Main.currentTaskId = null;

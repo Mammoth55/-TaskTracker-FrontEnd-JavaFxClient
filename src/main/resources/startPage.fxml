@@ -41,11 +41,11 @@
                      <children>
                         <TableView fx:id="tasksTable" editable="true" prefHeight="453.0" prefWidth="952.0" style="-fx-alignment: CENTER_RIGHT;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
-                            <TableColumn fx:id="timeColumn" prefWidth="178.0" text="TIME" />
-                              <TableColumn fx:id="priorityColumn" prefWidth="115.0" text="PRIORITY" />
-                              <TableColumn fx:id="statusColumn" prefWidth="120.0" text="STATUS" />
-                              <TableColumn fx:id="titleColumn" prefWidth="455.0" text="TITLE" />
+                            <TableColumn fx:id="idColumn" editable="false" style="-fx-alignment: CENTER;" text="НОМЕР" />
+                            <TableColumn fx:id="timeColumn" editable="false" prefWidth="100.0" style="-fx-alignment: CENTER;" text="ДАТА" />
+                              <TableColumn fx:id="priorityColumn" editable="false" prefWidth="130.0" style="-fx-alignment: CENTER;" text="ПРИОРИТЕТ" />
+                              <TableColumn fx:id="statusColumn" editable="false" prefWidth="130.0" style="-fx-alignment: CENTER;" text="СТАТУС" />
+                              <TableColumn fx:id="titleColumn" editable="false" prefWidth="473.0" sortable="false" text="ЗАГОЛОВОК" />
                           </columns>
                         </TableView>
                      </children>
