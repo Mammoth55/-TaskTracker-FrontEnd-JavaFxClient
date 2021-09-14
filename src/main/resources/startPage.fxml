@@ -10,11 +10,6 @@
    <children>
       <AnchorPane layoutX="6.0" layoutY="4.0" prefHeight="691.0" prefWidth="980.0" style="-fx-background-color: #fafafa;">
          <children>
-            <TextField alignment="CENTER" editable="false" layoutX="400.0" prefHeight="27.0" prefWidth="181.0" style="-fx-background-color: #fafafa;" text="СПИСОК ЗАДАЧ">
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-            </TextField>
             <Button fx:id="createButton" layoutX="616.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Создать">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -52,6 +47,16 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <Label alignment="CENTER" layoutX="405.0" layoutY="8.0" prefHeight="27.0" prefWidth="172.0" text="СПИСОК ЗАДАЧ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="renewButton" layoutX="193.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Обновить">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

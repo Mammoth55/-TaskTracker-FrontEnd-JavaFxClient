@@ -4,15 +4,12 @@ import client.Main;
 import client.model.TableviewTask;
 import client.model.Task;
 import client.model.TaskDtoResponse;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,6 +46,9 @@ public class StartPageController implements Initializable {
     private Button deleteButton;
 
     @FXML
+    private Button renewButton;
+
+    @FXML
     private Button editButton;
 
     @FXML
@@ -64,6 +64,8 @@ public class StartPageController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        renewButton.setOnAction(event -> Main.openNewScene("/startPage.fxml"));
+
         tasksTable.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() > 0) {
                 TableviewTask currentTask = tasksTable.getSelectionModel().getSelectedItem();
@@ -74,12 +76,12 @@ public class StartPageController implements Initializable {
 
         createButton.setOnAction(event -> {
             Main.currentTaskId = null;
-            openNewScene("/editTask.fxml");
+            Main.openNewScene("/editTask.fxml");
         });
 
         editButton.setOnAction(event -> {
             if (Main.currentTaskId != null) {
-                openNewScene("/editTask.fxml");
+                Main.openNewScene("/editTask.fxml");
             }
         });
 
@@ -101,9 +103,9 @@ public class StartPageController implements Initializable {
             e.printStackTrace();
         }
 
-        Gson g = new Gson();
-        Type type = new TypeToken<TaskDtoResponse>(){}.getType();
-        TaskDtoResponse taskDtoResponse = g.fromJson(result, type);
+        Type type = new TypeToken<TaskDtoResponse>() {
+        }.getType();
+        TaskDtoResponse taskDtoResponse = Main.GSON.fromJson(result, type);
         List<Task> tasks = taskDtoResponse.getTasks();
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -119,17 +121,5 @@ public class StartPageController implements Initializable {
         }
         tasksTable.setItems(tableviewTasks);
         Main.currentTaskId = null;
-    }
-
-    public void openNewScene(String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlPath));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Main.mainStage.setScene(new Scene(loader.getRoot()));
-        Main.mainStage.show();
     }
 }

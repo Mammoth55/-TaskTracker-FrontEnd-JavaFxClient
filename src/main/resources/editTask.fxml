@@ -14,11 +14,6 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField alignment="CENTER" editable="false" layoutX="207.0" layoutY="14.0" prefHeight="87.0" prefWidth="550.0" style="-fx-background-color: #fafafa;" text="Редактирование задачи">
-               <font>
-                  <Font name="Calibri" size="48.0" />
-               </font>
-            </TextField>
             <Button fx:id="saveButton" layoutX="590.0" layoutY="607.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Сохранить">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -44,6 +39,11 @@
             <Label alignment="CENTER_RIGHT" layoutX="552.0" layoutY="108.0" prefHeight="39.0" prefWidth="124.0" text="ПРИОРИТЕТ :">
                <font>
                   <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="287.0" layoutY="29.0" prefHeight="51.0" prefWidth="389.0" text="РЕДАКТИРОВАНИЕ ЗАДАЧИ">
+               <font>
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>
