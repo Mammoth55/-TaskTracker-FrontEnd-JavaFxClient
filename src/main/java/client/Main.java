@@ -2,10 +2,13 @@ package client;
 
 import com.google.gson.Gson;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.apache.http.Consts;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
@@ -37,6 +40,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT));
         primaryStage.show();
         mainStage = primaryStage;
+
+        primaryStage.setOnCloseRequest(t -> {
+            EXECUTOR_SERVICE.shutdown();
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     public static void openNewScene(String fxmlPath) {

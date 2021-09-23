@@ -89,37 +89,34 @@ public class StartPageController implements Initializable {
             if (Main.currentTaskId != null) {
                 try {
                     Request.Delete("http://localhost:8080/api/tasks/" + Main.currentTaskId).execute();
+                    Main.openNewScene("/startPage.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Main.openNewScene("/startPage.fxml");
             }
         });
 
-        String result = null;
         try {
-            result = Request.Get("http://localhost:8080/api/tasks").execute().handleResponse(myHandler);
+            String result = Request.Get("http://localhost:8080/api/tasks").execute().handleResponse(myHandler);
+            Type type = new TypeToken<TaskDtoResponse>() {}.getType();
+            TaskDtoResponse taskDtoResponse = Main.GSON.fromJson(result, type);
+            List<Task> tasks = taskDtoResponse.getTasks();
+
+            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+            priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+            statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+            titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+            ObservableList<TableviewTask> tableviewTasks = FXCollections.observableArrayList();
+            for (Task task : tasks) {
+                tableviewTasks.add(new TableviewTask(task.getId(), new SimpleDateFormat("dd.MM.yyyy").format(task.getTime()),
+                        task.getPriority(), task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
+            }
+            tasksTable.setItems(tableviewTasks);
+            Main.currentTaskId = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Type type = new TypeToken<TaskDtoResponse>() {
-        }.getType();
-        TaskDtoResponse taskDtoResponse = Main.GSON.fromJson(result, type);
-        List<Task> tasks = taskDtoResponse.getTasks();
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-
-        ObservableList<TableviewTask> tableviewTasks = FXCollections.observableArrayList();
-        for (Task task : tasks) {
-            tableviewTasks.add(new TableviewTask(task.getId(), new SimpleDateFormat("dd.MM.yyyy").format(task.getTime()),
-                    task.getPriority(), task.getStatus(), task.getTitle(), task.getText(), task.getUserId()));
-        }
-        tasksTable.setItems(tableviewTasks);
-        Main.currentTaskId = null;
     }
 }
