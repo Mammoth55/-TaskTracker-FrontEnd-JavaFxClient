@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import org.apache.http.client.fluent.Request;
@@ -55,7 +52,7 @@ public class StartPageController implements Initializable {
     private Button createButton;
 
     @FXML
-    private TextField textField;
+    private TextArea textField;
 
     @FXML
     void fafafa(ActionEvent event) {

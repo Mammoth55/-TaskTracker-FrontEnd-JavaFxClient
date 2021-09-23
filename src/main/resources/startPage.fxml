@@ -20,11 +20,6 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <TextField fx:id="textField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="504.0" prefHeight="113.0" prefWidth="953.0" promptText="Подробное описание задачи" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 9;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
             <Button fx:id="deleteButton" layoutX="14.0" layoutY="626.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Удалить">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -57,6 +52,11 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
+            <TextArea fx:id="textField" editable="false" layoutX="14.0" layoutY="507.0" prefHeight="110.0" prefWidth="953.0" promptText="Подробное описание задачи" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
          </children>
       </AnchorPane>
    </children>

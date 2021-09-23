@@ -9,11 +9,6 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="672.0" prefWidth="963.0" style="-fx-background-color: #fafafa;">
          <children>
-            <TextField fx:id="titleField" alignment="TOP_LEFT" layoutX="15.0" layoutY="169.0" prefHeight="78.0" prefWidth="935.0" promptText="Краткое описание" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 9;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
             <Button fx:id="saveButton" layoutX="590.0" layoutY="607.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="172.0" style="-fx-background-color: #f39c63;" text="Сохранить">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -24,11 +19,6 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <TextField fx:id="textField" alignment="TOP_LEFT" layoutX="14.0" layoutY="269.0" prefHeight="313.0" prefWidth="935.0" promptText="Подробное описание задачи" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 9;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
             <ChoiceBox fx:id="statusChoiceBox" layoutX="122.0" layoutY="112.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
             <ChoiceBox fx:id="priorityChoiceBox" layoutX="686.0" layoutY="112.0" prefHeight="32.0" prefWidth="232.0" style="-fx-font-size: 14;" />
             <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="108.0" prefHeight="39.0" prefWidth="98.0" text="СТАТУС :">
@@ -46,6 +36,16 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <TextArea fx:id="textField" layoutX="15.0" layoutY="336.0" prefHeight="222.0" prefWidth="935.0" promptText="Подробное описание задачи" style="-fx-border-radius: 9; -fx-background-color: #fafafa; -fx-border-color: silver;" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="titleField" layoutX="15.0" layoutY="195.0" prefHeight="96.0" prefWidth="935.0" promptText="Краткое описание задачи" style="-fx-border-radius: 9; -fx-background-color: #fafafa; -fx-border-color: silver;" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextArea>
          </children>
       </AnchorPane>
    </children>
