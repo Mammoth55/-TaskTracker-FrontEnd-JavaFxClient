@@ -23,6 +23,7 @@ public class Main extends Application {
     public static final int DELAY_ON_BD_SAVE = 555; // пауза чтобы доп.поток успел отработать в большинстве случаев и не понадобилось обновление окна при возвращении
     public static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(3);
     public static final Gson GSON = new Gson();
+    public static final String DATE_FORMAT = "yyyy-MM-dd'T'hh:mm:ss.S";
     public static Stage mainStage;
     public static Integer currentTaskId;
     public static ResponseHandler<String> myHandler = response -> EntityUtils.toString(response.getEntity(), Consts.UTF_8);

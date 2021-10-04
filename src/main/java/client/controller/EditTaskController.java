@@ -1,12 +1,14 @@
 package client.controller;
 
 import client.Main;
+import client.dto.TaskDtoRequest;
 import client.dto.TaskPriorityDtoResponse;
 import client.dto.TaskStatusDtoResponse;
 import client.model.SaveRequest;
 import client.model.Task;
 import client.model.TaskPriority;
 import client.model.TaskStatus;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -57,15 +59,14 @@ public class EditTaskController {
             boolean editMode = Main.currentTaskId != null;
             String request = "http://localhost:8080/api/tasks";
             if (editMode) request += "/" + Main.currentTaskId;
-            request += "?title=" + titleField.getText()
-                    + "&text=" + textField.getText()
-                    + "&time=" + new Timestamp(System.currentTimeMillis())
-                    + "&userId=1"
-                    + "&status=" + statusChoiceBox.getValue()
-                    + "&priority=" + priorityChoiceBox.getValue();
-            if (editMode) request += "&id=" + Main.currentTaskId;
-            request = request.replaceAll(" ", "%20");
-            Main.EXECUTOR_SERVICE.execute(new SaveRequest(editMode, request));
+
+            TaskDtoRequest taskDtoRequest = new TaskDtoRequest(0, titleField.getText(), textField.getText(),
+                    new Timestamp(System.currentTimeMillis()), 1, statusChoiceBox.getValue(), priorityChoiceBox.getValue());
+            if (editMode) {
+                taskDtoRequest.setId(Main.currentTaskId);
+            }
+            String json = new GsonBuilder().setDateFormat(Main.DATE_FORMAT).create().toJson(taskDtoRequest);
+            Main.EXECUTOR_SERVICE.execute(new SaveRequest(editMode, request, json));
             try {
                 Thread.sleep(Main.DELAY_ON_BD_SAVE);
                 Main.openNewScene("/startPage.fxml");
